@@ -2,7 +2,7 @@
 
 //two different purposes in pointers. one is to declare apointer variable and other is in an operator to get the value stored at address stored in pointer.
 
-
+---------------------------------------------------------------------------------------------------------------
 //basic
 
 #include<stdio.h>
@@ -20,3 +20,194 @@ int main(){
     return 0;
 }
 
+----------------------------------------------------------------------------------------------------
+//dereferencing operator(*)
+
+#include<stdio.h>
+
+int main(){
+    int var = 10;
+    
+    //store address of var variable
+    int *ptr = &var;
+    
+    //deferencing ptr to access the value
+    printf("%d",*ptr);
+    
+    return 0;
+}
+
+---------------------------------------------------------------------------------------------------
+// size of a pointer in C depends on the architecture (bit system) of the machine, not the data type it points to.
+
+// on a 32-bit system, all pointers typically occupy 4 bytes
+// on a 64-bit system, all pointers typically occupy 8 bytes
+
+#include<stdio.h>
+
+int main(){
+    int *ptr1;
+    char *ptr2;
+    
+    //finding size using sizeof()
+    
+    printf("%zu\n",sizeof(ptr1));
+    printf("%zu",sizeof(ptr2));
+    
+    return 0;
+}
+---------------------------------------------------------------------------------------------------
+//NULL pointer
+
+// those pointers that do not point to any memory location
+
+#include<stdio.h>
+
+int main(){
+    
+    //Null pointer 
+    int *ptr = NULL;
+    
+    return 0;
+}
+
+---------------------------------------------------------------------------------------------------
+//void pointer
+
+// pointers of type void
+// it means that they do not have any associated data type
+// also called generic pointers(they can be point to any type and can be typecasted to any type)
+
+#include<stdio.h>
+
+int main(){
+    //void pointer
+    void *ptr;
+    return 0;
+}
+----------------------------------------------------------------------------------------------
+//wild pointers
+
+// pointers that have not been initialized with something yet
+
+//these types of c-pointers can cause problems in our programs and can eventually cause them to crash.
+
+// if values are updated using wild pointer, they could cause data abort or data corruption
+
+#include<stdio.h>
+
+int main(){
+    //wild pointer 
+    int *ptr;
+    
+    return 0;
+}
+
+--------------------------------------------------------------------------------------------------------
+//Dangling pointer
+
+//a pointer pointing to a memory location that has been deleted(or freed)
+// such a situation can lead to unexpected behaviour in the program and also serve as a source of bugs in c programms.
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main(){
+    
+    int *ptr = (int*)malloc(sizeof(int));
+    
+    //after below free call, ptr becomes a dangling pointer
+    free(ptr);
+    printf("Memory freed\n");
+    
+    //removing dangling pointer
+    ptr = NULL;
+    
+    return 0;
+}
+----------------------------------------------------------------------------------------------------------
+// operation that can be performed on pointers:
+// increment/decrement
+//addition/subtraction of integer
+//subtracting two pointers of same type
+//comparing/assigning two pointers of same type
+//comparing/assigning with NULL
+-----------------------------------------------------------------------------------------------
+//Constant pointers
+
+//the memory address stored inside the pointer is constant and cannot be modified once it is defined. 
+// it will always point to the same memory address.
+
+#include<stdio.h>
+
+int main(){
+    int a = 90;
+    int b = 50;
+    
+    //creating a constant pointer
+    int *const ptr = &a;
+    
+    //trying to reassing it to b 
+    ptr = &b;
+    
+    return 0;
+}
+----------------------------------------------------------------------------------------------------------
+//pointer to function
+
+// it is type of pointer that stores the address of a function, allowing functions to be passed  as arguments and invoked dynamically
+// it is useful in techniques such as callback functions, event-driven programs
+
+#include<stdio.h>
+
+int add(int a, int b){
+    return a+b;
+}
+
+int main(){
+    
+    //declare a function pointer that matches the signature of add() function 
+    
+    int (*fptr)(int,int);
+    
+    //assing address of add()
+    
+    fptr = &add;
+    
+    //call the function via fptr
+    printf("%d",fptr(10,5));
+    
+    return 0;
+}
+------------------------------------------------------------------------------------------------------
+
+//Multilevel pointers
+
+//most popular is double pointer(pointer to pointer)
+// it stores the memory address of another pointer. 
+// instead of pointing to a data value, they point to another pointer
+
+#include<stdio.h>
+
+int main(){
+    int var = 10;
+    
+    //pointer to int
+    
+    int *ptr1 = &var;
+    
+    //pointer to pointer (double pointer)
+    
+    int **ptr2 = &ptr1;
+    
+    //accessing values using all three
+    
+    printf("var: %d\n",var);
+    printf("*ptr1: %d\n",*ptr1);
+    printf("**ptr2: %d",**ptr2);
+    
+    return 0;
+    
+}
+
+-----------------------------------------------------------------------------------------------------
