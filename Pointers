@@ -1,0 +1,22 @@
+// pointers syntax: data_type *pointer_name;
+
+//two different purposes in pointers. one is to declare apointer variable and other is in an operator to get the value stored at address stored in pointer.
+
+
+//basic
+
+#include<stdio.h>
+
+int main(){
+    //normal variable
+    int var = 10;
+    
+    //pointer variable ptr that stores address of var 
+    int *ptr = &var;
+    
+    //directly accessing ptr will give us an address
+    printf("%d",ptr);
+    
+    return 0;
+}
+
